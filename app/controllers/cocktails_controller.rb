@@ -16,8 +16,6 @@ class CocktailsController < ApplicationController
 		@cocktail = Cocktail.find(params[:id])
 		redirect_to edit_cocktail_path(@cocktail)
 	end
-		
-	end
 
 	def update
 		@cocktail = Cocktail.find(params[:id])
@@ -28,7 +26,6 @@ class CocktailsController < ApplicationController
 		@cocktail = Cocktail.find(params[:id])
 		@dose = Dose.new
 		@pic = get_json
-
 	end
 
 	def new
@@ -51,11 +48,11 @@ class CocktailsController < ApplicationController
 	end
 
   def get_json
-  		@name = @cocktail.name.downcase
-  		@name.gsub!(" ", "%20")
-      source = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
-      loaded = open(source + @name).read
-      @data = JSON.parse(loaded)
-      @pic = @data['drinks'][0]['strDrinkThumb']
+		@name = @cocktail.name.downcase
+		@name.gsub!(" ", "%20")
+    source = "https://www.thecocktaildb.com/api/json/v1/1/search.php?s="
+    loaded = open(source + @name).read
+    @data = JSON.parse(loaded)
+    @pic = @data['drinks'][0]['strDrinkThumb']
   end
 end
