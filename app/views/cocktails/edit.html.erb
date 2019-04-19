@@ -13,7 +13,11 @@
 				<tr>
 					<td><%= item.ingredient.name %></td>
 					<td><%= item.description %></td>
-					<td>Delete</td>
+					<td>
+						<%= link_to dose_path(item), method: :delete do %>
+							<i class="fas fa-trash text-primary"></i>
+						<% end %>
+					</td>
 				</tr>
 				<% end %>
 		</tbody>
