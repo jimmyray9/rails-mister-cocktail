@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  root :to "/cocktails"
+  root "cocktails#index"
   resources :cocktails, except: [:show] do
   	resources :doses, only: [:create]
   end
