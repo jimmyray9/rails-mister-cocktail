@@ -3,6 +3,7 @@ require 'open-uri'
 class CocktailsController < ApplicationController
 	def index
 		@cocktails = Cocktail.all
+		get_random_index
 	end
 
 	def destroy
@@ -40,6 +41,11 @@ class CocktailsController < ApplicationController
 		redirect_to edit_cocktail_path(@cocktail)
 	end
 
+	def get_random_index
+		@cocktails = Cocktail.all
+		@cocktail_ids = Cocktail.pluck(:id).to_a
+		@rand_cocktail_id = @cocktail_ids.sample
+	end
 
 	private 
 
