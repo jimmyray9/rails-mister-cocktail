@@ -1,11 +1,28 @@
-<h1>Cocktails</h1>
+<div class="jumbotron" style="height: 75vh; background: linear-gradient(180deg,#0003,#00000080 70%), url('https://cdn.pixabay.com/photo/2018/08/22/10/15/bottles-3623317_960_720.jpg')">
+  <h1 class="display-4 text-white">Cocktails</h1>
+  <p class="lead" style="color: white">Come take a look at all the kinds of cocktails out there and add your own!</p>
+  <hr class="my-4">
+  <a class="btn btn-primary btn-lg" href="cocktails/<%= rand(@cocktails.length) %>" role="button">Get random cocktail</a>
+</div>
 
-<hr>
-
-<% @cocktails.each do |cocktail| %>
-	<li><%= cocktail.name %>
-		<%= link_to "Edit", edit_cocktail_path(cocktail) %>
-		<%= link_to "Delete", cocktail_path(cocktail), method: :delete %>
-<% end %>
-<hr>
-<h4><%= link_to "Add a cocktail", new_cocktail_path %></h4>
+<!-- Main container area -->
+<div class="container shadow p-3 mb-5 bg-white rounded">
+	<% @cocktails.each do |cocktail| %>
+		<% if cocktail == @cocktails.last %>
+			<li class="mb-3 text-uppercase p-2" style="list-style:none"><i class="fas fa-cocktail mr-2"></i><span class="badge badge-primary ml-2 mr-2">New</span><%= cocktail.name %>
+				<%= link_to "Edit", edit_cocktail_path(cocktail) %>
+				<%= link_to "Delete", cocktail_path(cocktail), method: :delete, :class => "text-danger" %>
+			</li>
+		<% else %>
+	
+			<li class="mb-3 text-uppercase p-2" style="list-style:none">
+				<i class="fas fa-cocktail mr-2"></i>
+				<%= cocktail.name %>
+				<%= link_to "Edit", edit_cocktail_path(cocktail) %>
+				<%= link_to "Delete", cocktail_path(cocktail), method: :delete, :class => "text-danger" %>
+			</li> 
+		<% end %>
+	<% end %>
+	<hr>
+	<h4 class="mb-4"><%= link_to "Add new cocktail", new_cocktail_path %></h4>
+</div>
